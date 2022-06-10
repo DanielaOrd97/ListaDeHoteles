@@ -84,8 +84,6 @@ namespace ListaDeHoteles.ViewModels
             if(Hotel != null)
             {
 
-            
-
             Error = "";
 
             if (string.IsNullOrWhiteSpace(Hotel.Nombre))
