@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:ListaDeHoteles.ViewModels"
+             x:Class="ListaDeHoteles.Views.EditarHotelView"  Background="#F77E21">
+
+
+    <ContentPage.BindingContext>
+        <viewmodels:HotelesViewModel></viewmodels:HotelesViewModel>
+    </ContentPage.BindingContext>
+
+
+    <ScrollView Margin="5" Padding="30" VerticalScrollBarVisibility="Never">
+        <StackLayout>
+
+            <StackLayout.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="TextColor" Value="White"></Setter>
+                    <Setter Property="FontSize" Value="Medium"></Setter>
+                    <Setter Property="Margin" Value="5"></Setter>
+                </Style>
+                <Style TargetType="Entry">
+                    <Setter Property="Margin" Value="7"></Setter>
+                    <Setter Property="Margin" Value="5"></Setter>
+                </Style>
+            </StackLayout.Resources>
+
+            <Image Source="ih" HorizontalOptions="Center" Margin="0,0,0,40" HeightRequest="180"></Image>
+
+            <Label Text="Nombre del hotel:"></Label>
+            <Frame CornerRadius="30">
+                <Entry Text="{Binding Hotel.Nombre}"></Entry>
+            </Frame>
+
+            <Label Text="Ubicación:"></Label>
+            <Frame CornerRadius="30">
+                <Entry Text="{Binding Hotel.Ubicacion}"></Entry>
+            </Frame>
+
+            <Label Text="Estrellas:"></Label>
+            <Frame CornerRadius="30">
+                <Entry Keyboard="Numeric" Text="{Binding Hotel.Estrellas}"></Entry>
+            </Frame>
+
+            <Label Text="Pisos:"></Label>
+            <Frame CornerRadius="30">
+                <Entry Keyboard="Numeric"  Text="{Binding Hotel.Pisos}"></Entry>
+            </Frame>
+
+            <Label Text="Número de habitaciones:"></Label>
+            <Frame CornerRadius="30">
+                <Entry Keyboard="Numeric" Text="{Binding Hotel.NumeroHabitaciones}"></Entry>
+            </Frame>
+
+
+            <Label Text="Link de imagen:"></Label>
+            <Frame CornerRadius="30">
+                <Entry Text="{Binding Hotel.Imagen}"></Entry>
+            </Frame>
+
+
+            <Label Text="Descripción:"></Label>
+            <Frame CornerRadius="30">
+                <Editor Text="{Binding Hotel.Descripcion}" Background="White"></Editor>
+            </Frame>
+
+            <Label Text="{Binding Error}" HorizontalTextAlignment="Center" TextColor="Black"></Label>
+
+            <ImageButton Command="{Binding GuardarCommand}" Source="iEditar" HeightRequest="80" Margin="0,5,0,0" BackgroundColor="Transparent" Padding="10"></ImageButton>
+
+
+        </StackLayout>
+
+    </ScrollView>
+
+
+
+
+</ContentPage>

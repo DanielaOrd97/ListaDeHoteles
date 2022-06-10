@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ListaDeHoteles.Views.DetallesHotelView"
+              xmlns:viewmodels="clr-namespace:ListaDeHoteles.ViewModels" 
+             xmlns:xaml="http://prismlibrary.com"
+              Background="#F77E21">
+
+
+    <ContentPage.BindingContext>
+        <viewmodels:HotelesViewModel></viewmodels:HotelesViewModel>
+    </ContentPage.BindingContext>
+
+    
+    <ScrollView VerticalScrollBarVisibility="Never">
+
+       
+
+        <StackLayout>
+
+
+            <StackLayout.Resources>
+
+                <Style TargetType="Label">
+                    <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+                    <Setter Property="TextColor" Value="Black"></Setter>
+                </Style>
+
+            </StackLayout.Resources>
+
+
+           
+
+            <Image Aspect="AspectFill"  HeightRequest="490" Source="{Binding Imagen}" VerticalOptions="Start"></Image>
+
+
+
+            <Frame CornerRadius="50" Margin="2" Padding="20">
+
+                <StackLayout>
+
+
+
+                    <Label Text="{Binding Nombre}" HorizontalOptions="Start" FontAttributes="Bold" FontSize="Large"></Label>
+                    <Image>
+                        <Image.Style>
+                            <Style TargetType="Image">
+                                <Setter Property="HeightRequest" Value="50"></Setter>
+                                <Setter Property="HorizontalOptions" Value="Start"></Setter>
+                                <Style.Triggers>
+                                    <DataTrigger TargetType="Image" Binding="{Binding Estrellas}" Value="5">
+                                        <Setter  Property="Source" Value="i5Es"></Setter>
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Image" Binding="{Binding Estrellas}" Value="4">
+                                        <Setter Property="Source" Value="i4Es"></Setter>
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Image" Binding="{Binding Estrellas}" Value="3">
+                                        <Setter Property="Source" Value="i3Es"></Setter>
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Image" Binding="{Binding Estrellas}" Value="2">
+                                        <Setter Property="Source" Value="i2Es"></Setter>
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Image" Binding="{Binding Estrellas}" Value="1">
+                                        <Setter Property="Source" Value="i1Es"></Setter>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                    <FlexLayout HorizontalOptions="Center">
+                        <Image Source="iLugar" HeightRequest="30"></Image>
+                        <Label Text="{Binding Ubicacion}" HorizontalOptions="Center" FontSize="Medium"></Label>
+                    </FlexLayout>
+                    <FlexLayout HorizontalOptions="Center">
+                        <Image Source="iEdif" HeightRequest="30"></Image>
+                        <Label Text="{Binding Pisos}" HorizontalOptions="Center" FontSize="Medium"></Label>
+                    </FlexLayout>
+                    <FlexLayout>
+                        <Image Source="iHab" HeightRequest="30"></Image>
+                        <Label Text="{Binding NumeroHabitaciones}" HorizontalOptions="Center" FontSize="Medium"></Label>
+                    </FlexLayout>
+                    <Label Text="Descripción:" HorizontalOptions="Center" FontSize="Subtitle"  FontAttributes="Bold"></Label>
+                    <Label Text="{Binding Descripcion}" FontSize="Medium"></Label>
+                </StackLayout>
+            </Frame>
+
+
+        </StackLayout>
+
+
+    </ScrollView>
+
+
+
+</ContentPage>

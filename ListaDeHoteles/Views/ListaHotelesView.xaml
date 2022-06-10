@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ListaDeHoteles.Views.ListaHotelesView"
+             xmlns:viewmodels="clr-namespace:ListaDeHoteles.ViewModels"
+             xmlns:models="clr-namespace:ListaDeHoteles.Models"
+             Background="#FEF9A7" NavigationPage.HasNavigationBar="False"
+             >
+
+
+    <ContentPage.BindingContext>
+        <viewmodels:HotelesViewModel x:Name="HotelVM"></viewmodels:HotelesViewModel>
+    </ContentPage.BindingContext>
+
+
+    <ContentPage.Resources>
+
+
+      
+
+    </ContentPage.Resources>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"></RowDefinition>
+            <RowDefinition Height="70*"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+
+        <StackLayout Margin="30">
+
+
+            <StackLayout.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="FontSize" Value="Medium"></Setter>
+                    <Setter Property="Margin" Value="8"></Setter>
+                </Style>
+            </StackLayout.Resources>
+
+            <FlexLayout>
+                <Label Text="Bienvenido!" TextColor="Black" FontAttributes="Bold" FontSize="Large"></Label>
+                <Image Source="ihello" HeightRequest="20" Margin="0,20,0,0"></Image>
+            </FlexLayout>
+           
+
+        </StackLayout>
+
+
+
+        <CollectionView Grid.Row="1"  HorizontalOptions="Center" ItemsSource="{Binding ListaHoteles}" ItemSizingStrategy="MeasureAllItems" Margin="0,30,0,0">
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal"></LinearItemsLayout>
+            </CollectionView.ItemsLayout>
+
+
+            <CollectionView.ItemTemplate>
+
+                <DataTemplate>
+
+
+                    <SwipeView>
+
+                     
+                        
+                        <SwipeView.BottomItems>
+
+                            <SwipeItems Mode="Execute">
+                                <SwipeItem Clicked="SwipeItem_Clicked" CommandParameter="{Binding .}" BackgroundColor="Red" IconImageSource="itrash"></SwipeItem>
+
+                            </SwipeItems>
+                        </SwipeView.BottomItems>
+
+
+                        <Grid  Background="#FEF9A7"  HeightRequest="200" Padding="10">
+
+                            <Grid.GestureRecognizers>
+                                <SwipeGestureRecognizer Direction="Down" Command="{Binding Source={x:Reference HotelVM},Path=EditarCommand}" CommandParameter="{Binding .}" ></SwipeGestureRecognizer>
+                                <TapGestureRecognizer Command="{Binding Source={x:Reference HotelVM},Path=MostrarDetallesCommand}" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                            </Grid.GestureRecognizers>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height=".8*"></RowDefinition>
+                                <RowDefinition Height=".2*"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+
+
+                            <Image Aspect="AspectFit" Source="{Binding Imagen}" HorizontalOptions="Center" WidthRequest="390" Margin="20,10,20,0" HeightRequest="200"></Image>
+
+
+                            <Frame Background="#F77E21" Margin="20,320,95,-10" Padding="15" CornerRadius="15" HeightRequest="100">
+                                <Label Grid.Row="1" Text="{Binding Nombre}"  HorizontalTextAlignment="Start" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" FontSize="Large" VerticalTextAlignment="Start"></Label>
+                            </Frame>
+
+
+                          
+
+                            <Image Margin="150,0,20,320">
+                                <Image.Style>
+                                    <Style TargetType="Image">
+                                        <Setter Property="WidthRequest" Value="100"></Setter>
+                                        <Setter Property="HorizontalOptions" Value="EndAndExpand"></Setter>
+                                        <Style.Triggers>
+                                            <DataTrigger TargetType="Image" Binding="{Binding Estrellas}" Value="5">
+                                                <Setter Property="Source" Value="i991986"></Setter>
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Image" Binding="{Binding Estrellas}" Value="4">
+                                                <Setter Property="Source" Value="i991985"></Setter>
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Image" Binding="{Binding Estrellas}" Value="3">
+                                                <Setter Property="Source" Value="i991984"></Setter>
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Image" Binding="{Binding Estrellas}" Value="2">
+                                                <Setter Property="Source" Value="i991983"></Setter>
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Image" Binding="{Binding Estrellas}" Value="1">
+                                                <Setter Property="Source" Value="i991982"></Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+
+                            <!--</Frame>-->
+
+
+                        </Grid>
+
+
+                    </SwipeView>
+                </DataTemplate>
+
+
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+
+
+
+
+
+        <Grid Grid.Row="2">
+
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="35*"></ColumnDefinition>
+                <ColumnDefinition Width="30*"></ColumnDefinition>
+                <ColumnDefinition Width="35*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+          
+
+            <ImageButton Grid.Column="1" BackgroundColor="#FEF9A7"  Command="{Binding CambiarVistaCommand}" CommandParameter="Agregar" Source="i7720562" BorderWidth="0"></ImageButton>
+
+        </Grid>
+
+
+
+    </Grid>
+
+
+
+</ContentPage>
+    
